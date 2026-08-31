@@ -1962,6 +1962,6 @@ ldap.max_links = -1
 zend_extension=xdebug.so
 xdebug.mode=debug
 xdebug.start_with_request=yes
-xdebug.client_host=127.0.0.1
+xdebug.client_host=10.10.0.1
 xdebug.client_port=9003
 xdebug.log=/tmp/xdebug.log

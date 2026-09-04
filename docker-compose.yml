@@ -5,8 +5,8 @@ services:
             context: .
             dockerfile: Dockerfile
         working_dir: /var/www
-        ports:
-            - "8000:80"
+        network_mode: "host"
+        user: root
         extra_hosts:
             - "host.docker.internal:host-gateway"
         volumes:
@@ -16,42 +16,4 @@ services:
         environment:
             - APACHE_RUN_USER=www-data
             - APACHE_RUN_GROUP=www-data
-        depends_on:
-            - ambiente_db
-    ambiente_db:
-        container_name: ambiente_db
-        image: mariadb:10.3.39-focal
-        volumes:
-            - ./docker/data:/var/lib/mysql/
-        environment:
-            MYSQL_ROOT_PASSWORD: Devanon1
-            MYSQL_DATABASE: database
-            MYSQL_USER: fabricio
-            MYSQL_PASSWORD: Devanon1
-        ports:
-            - "2000:3306"
-    ambiente_phpmyadmin:
-        image: phpmyadmin/phpmyadmin
-        environment:
-            PMA_HOST: ambiente_db
-        depends_on:
-            - ambiente_db
-        ports:
-            - "1000:80"
- 
-
-
-    # php-nginx-environment:
-    #     container_name: php-nginx
-    #     build:
-    #         context: .
-    #         dockerfile: Dockerfile
-    #     volumes:
-    #         - ./html:/usr/share/nginx/html/
-    #     depends_on:
-    #         - db
-    #     ports:
-    #         - "8000:80"
-
-    
-    
+        

@@ -12,6 +12,7 @@ services:
         volumes:
             - ./:/var/www
             - ./docker/apache/000-default.conf:/etc/apache2/sites-available/000-default.conf
+            - ./docker/apache/ports.conf:/etc/apache2/ports.conf
             - ./docker/php/php.ini-development:/usr/local/etc/php/php.ini
         environment:
             - APACHE_RUN_USER=www-data
